@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Shared;assembly=Shared"
+             x:Class="AppControlCambio.MainPage"
+             Title="EasyChange">
+
+    <Grid RowDefinitions="auto,auto"  RowSpacing="30" Margin="15">
+        <Button Grid.Row="0" Text="Modificar Tasas" BackgroundColor="Green" Command="{Binding UpdateTasaCommand}"/>
+        <CollectionView Grid.Row="1" ItemsSource="{Binding ListaPais}">
+            <CollectionView.ItemsLayout >
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout >
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Pais">
+                    <Button x:Name="Venezuela" Text="{Binding pais}" FontSize="Body"
+                            Command="{Binding BindingContext.TasasCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                            CommandParameter="{Binding pais}"/>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+       
+    </Grid>
+</ContentPage>

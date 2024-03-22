@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Shared;assembly=Shared"
+             x:Class="AppControlCambio.Pages.Tasas"
+             Title="{Binding Titulo}">
+    
+    <ScrollView>
+        
+        <CollectionView ItemsSource="{Binding ListaTasas}">
+            <CollectionView.ItemsLayout >
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout >
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:ResponseTasas" >
+                    <Border Padding="5" HorizontalOptions="FillAndExpand">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="5"/>
+                        </Border.StrokeShape>
+                        <Grid RowDefinitions="auto,auto,auto" ColumnDefinitions="auto,* " Margin="20" >
+                           
+                            <Label Grid.Row="0" Grid.Column="0" Text="Pais:" FontAttributes="Bold"/>
+                            <Label Grid.Row="0" Grid.Column="1"  Text="{Binding pais}"  HorizontalOptions="End"/>
+                            <Label Grid.Row="1" Grid.Column="0" Text="Tasa:" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Grid.Column="1"  Text="{Binding tasa}" HorizontalOptions="End"/>
+                            <Label Grid.Row="2" Grid.Column="0" Text="Op:" FontAttributes="Bold"/>
+                            <Label Grid.Row="2" Grid.Column="2" FontSize="20" Text="{Binding op}" HorizontalOptions="End"/>
+                        </Grid>
+
+                    </Border>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+    </ScrollView>
+</ContentPage>
