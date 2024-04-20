@@ -54,7 +54,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
 
             var tasaM = VES / MXN;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 1).ToString(), op = "/" });
@@ -74,6 +74,22 @@ namespace ControlCambioApi.Services
 
             var tasaB = VES / BRL;
             Tasas.Add(new ResponseTasas { pais = "Brasil", tasa = decimal.Round((decimal)tasaB!, 2).ToString(), op = "/" });
+            #endregion
+
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = VES / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
+            #endregion
+
+            #region UUEE
+            var EEUU = paises.FirstOrDefault(x => x.Pais == "EEUU");
+            var USDEU = EEUU?.ValorMoneda;
+
+            var tasaEU = VES / USDEU;
+            Tasas.Add(new ResponseTasas { pais = "EEUU", tasa = decimal.Round((decimal)tasaEU!, 2).ToString(), op = "/" });
             #endregion
 
             return Tasas;
@@ -97,6 +113,14 @@ namespace ControlCambioApi.Services
 
             #endregion
 
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = COP / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
+            #endregion
+
             #region Chile 
             var chile = paises.FirstOrDefault(x => x.Pais == "Chile");
             var CLP = chile?.ValorMoneda - ((chile?.ValorMoneda * 5) / 100);
@@ -115,7 +139,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
 
             var tasaM = COP / MXN;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 0).ToString(), op = "/" });
@@ -160,6 +184,14 @@ namespace ControlCambioApi.Services
 
             #endregion
 
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = CLP / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
+            #endregion
+
             #region Peru
             var peru = paises.FirstOrDefault(x => x.Pais == "Peru");
             var PEN = peru?.ValorMoneda - ((peru?.ValorMoneda * 5) / 100);
@@ -174,6 +206,14 @@ namespace ControlCambioApi.Services
 
             var tasaB =  BRL/CLP;
             Tasas.Add(new ResponseTasas { pais = "Brasil", tasa = decimal.Round((decimal)tasaB!, 4).ToString(), op = "*" });
+            #endregion
+
+            #region Mexico
+            var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
+
+            var tasaM = MXN / CLP;
+            Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 4).ToString(), op = "*" });
             #endregion
 
             return Tasas;
@@ -202,7 +242,7 @@ namespace ControlCambioApi.Services
             var tasaC = COP / PEN;
 
 
-            Tasas.Add(new ResponseTasas { pais = "Colombia", tasa = decimal.Round((decimal)tasa!, 0).ToString(), op = "*" });
+            Tasas.Add(new ResponseTasas { pais = "Colombia", tasa = decimal.Round((decimal)tasaC!, 0).ToString(), op = "*" });
             #endregion
 
             #region Chile
@@ -215,7 +255,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
 
             var tasaM = MXN /PEN;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 2).ToString(), op = "*" });
@@ -229,6 +269,13 @@ namespace ControlCambioApi.Services
             Tasas.Add(new ResponseTasas { pais = "Brasil", tasa = decimal.Round((decimal)tasaB!, 2).ToString(), op = "*" });
             #endregion
 
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 5) / 100);
+
+            var tasaE = PEN/USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "*" });
+            #endregion
             return Tasas;
         }
 
@@ -237,7 +284,7 @@ namespace ControlCambioApi.Services
             var Tasas = new List<ResponseTasas>();
             var paises = await _tasasContext.TasasPs.ToListAsync();
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda + ((mexico?.ValorMoneda * 5) / 100);
+            var MXN = mexico?.ValorMoneda + ((mexico?.ValorMoneda * 9) / 100);
 
             #region Venezuela
 
@@ -253,6 +300,14 @@ namespace ControlCambioApi.Services
             var COP = colombia?.ValorMoneda - ((colombia!.ValorMoneda * 5) / 100);
             var tasaC =  COP/MXN  ;
             Tasas.Add(new ResponseTasas { pais = "Colombia", tasa = decimal.Round((decimal)tasaC!, 0).ToString(), op = "*" });
+            #endregion
+
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = MXN / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
             #endregion
 
             #region Peru
@@ -327,7 +382,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 10) / 100);
 
             var tasaM = MXN / USD;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 0).ToString(), op = "*" });
@@ -396,7 +451,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
 
             var tasaM = MXN / USD;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 0).ToString(), op = "*" });
@@ -455,7 +510,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 10) / 100);
 
             var tasaM = MXN / USD;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 0).ToString(), op = "*" });
@@ -522,7 +577,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 10) / 100);
 
             var tasaM = MXN / EUR;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 0).ToString(), op = "*" });
@@ -542,6 +597,14 @@ namespace ControlCambioApi.Services
 
             var tasaB = BRL / EUR;
             Tasas.Add(new ResponseTasas { pais = "Brasil", tasa = decimal.Round((decimal)tasaB!, 1).ToString(), op = "*" });
+            #endregion
+
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = EUR / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
             #endregion
 
             return Tasas;
@@ -576,6 +639,14 @@ namespace ControlCambioApi.Services
 
             #endregion
 
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = VES / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
+            #endregion
+
             #region Peru
 
             var peru = paises.FirstOrDefault(x => x.Pais == "Peru");
@@ -598,7 +669,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
 
             var tasaM = ARS / MXN;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 0).ToString(), op = "/" });
@@ -645,6 +716,14 @@ namespace ControlCambioApi.Services
 
             #endregion
 
+            #region Ecuador
+            var ecuador = paises.FirstOrDefault(x => x.Pais == "Ecuador");
+            var USD = ecuador?.ValorMoneda - ((ecuador?.ValorMoneda * 3) / 100);
+
+            var tasaE = VES / USD;
+            Tasas.Add(new ResponseTasas { pais = "Ecuador", tasa = decimal.Round((decimal)tasaE!, 2).ToString(), op = "/" });
+            #endregion
+
             #region Peru
 
             var peru = paises.FirstOrDefault(x => x.Pais == "Peru");
@@ -667,7 +746,7 @@ namespace ControlCambioApi.Services
 
             #region Mexico
             var mexico = paises.FirstOrDefault(x => x.Pais == "Mexico");
-            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 7) / 100);
+            var MXN = mexico?.ValorMoneda - ((mexico?.ValorMoneda * 9) / 100);
 
             var tasaM = MXN/BRL;
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 2).ToString(), op = "/" });
