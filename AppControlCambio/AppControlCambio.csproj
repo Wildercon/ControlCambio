@@ -65,6 +65,20 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\change.png" />
+	  <None Remove="Resources\Fonts\MerriweatherSans.ttf" />
+	  <None Remove="Resources\Images\argentina.png" />
+	  <None Remove="Resources\Images\brasil.png" />
+	  <None Remove="Resources\Images\calculator.svg" />
+	  <None Remove="Resources\Images\chile.png" />
+	  <None Remove="Resources\Images\colombia.png" />
+	  <None Remove="Resources\Images\ecuador.png" />
+	  <None Remove="Resources\Images\eeuu.png" />
+	  <None Remove="Resources\Images\espana.png" />
+	  <None Remove="Resources\Images\mexico.png" />
+	  <None Remove="Resources\Images\panama.png" />
+	  <None Remove="Resources\Images\peru.png" />
+	  <None Remove="Resources\Images\user.svg" />
+	  <None Remove="Resources\Images\venezuela.png" />
 	  <None Remove="Resources\Splash\change.png" />
 	</ItemGroup>
 
@@ -78,6 +92,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Login.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Tasas.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

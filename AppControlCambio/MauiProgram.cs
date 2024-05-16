@@ -15,6 +15,7 @@ namespace AppControlCambio
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("MerriweatherSans.ttf", "MerriweatherSans");
                 });
 
             builder.Services.AddTransient<Tasas>();
@@ -26,6 +27,9 @@ namespace AppControlCambio
 
             builder.Services.AddTransient<UpdateTasas>();
             builder.Services.AddTransient<UpdateTasasView>();
+
+            builder.Services.AddTransient<Login>();
+            builder.Services.AddTransient<LoginViewModel>();
 
 #if DEBUG
             builder.Logging.AddDebug();

@@ -216,6 +216,15 @@ namespace ControlCambioApi.Services
             Tasas.Add(new ResponseTasas { pais = "Mexico", tasa = decimal.Round((decimal)tasaM!, 4).ToString(), op = "*" });
             #endregion
 
+            #region Argentina
+            var argentina = paises.FirstOrDefault(x => x.Pais == "Argentina");
+            var ARS = argentina?.ValorMoneda - ((argentina?.ValorMoneda * 5) / 100);
+
+            var tasaA = CLP / ARS;
+            Tasas.Add(new ResponseTasas { pais = "Argentina", tasa = decimal.Round((decimal)tasaA!, 3).ToString(), op = "/" });
+            #endregion
+
+
             return Tasas;
         }
         public async Task<List<ResponseTasas>> GetTasasPeru()

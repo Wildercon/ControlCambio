@@ -26,15 +26,7 @@ namespace AppControlCambio.ViewModel
 
         }
 
-        [RelayCommand]
-        private async Task UpdateTasa()
-        {
-            var result = await Shell.Current.DisplayPromptAsync("Panel Administrador", "Ingrese Codigo De Autorización", "Verificar", "Cancelar",null, 10, Keyboard.Default);
-            if (result == "Wilcon96" || result == "Jhondel22")
-            {
-                await Shell.Current.GoToAsync(nameof(UpdateTasas));
-            }
-        }
+        
         public MainPageViewModel()
         {
             MainThread.BeginInvokeOnMainThread(new Action(async () => await ObtenerPaises()));

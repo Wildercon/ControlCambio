@@ -17,6 +17,7 @@
                     <Border Padding="5" HorizontalOptions="FillAndExpand">
                         <Border.StrokeShape>
                             <RoundRectangle CornerRadius="5"/>
+                            
                         </Border.StrokeShape>
                         <Grid RowDefinitions="auto,auto,auto" ColumnDefinitions="auto,* " Margin="20" >
                            

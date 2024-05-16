@@ -9,6 +9,7 @@ namespace AppControlCambio
             InitializeComponent();
             Routing.RegisterRoute(nameof(Tasas), typeof(Tasas));
             Routing.RegisterRoute(nameof(UpdateTasas), typeof(UpdateTasas));
+            Routing.RegisterRoute(nameof(Login), typeof(Login));
         }
     }
 }

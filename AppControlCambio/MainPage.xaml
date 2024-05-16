@@ -3,23 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:Shared;assembly=Shared"
              x:Class="AppControlCambio.MainPage"
-             Title="EasyChange">
+             Title="EasyChange"
+             BackgroundColor="{StaticResource Secondary}">
 
-    <Grid RowDefinitions="auto,auto"  RowSpacing="30" Margin="15">
-        <Button Grid.Row="0" Text="Modificar Tasas" BackgroundColor="Green" Command="{Binding UpdateTasaCommand}"/>
-        <CollectionView Grid.Row="1" ItemsSource="{Binding ListaPais}">
+   
+        <!--<Button Grid.Row="0" Text="Modificar Tasas" BackgroundColor="Green" Command="{Binding UpdateTasaCommand}"/>-->
+        <CollectionView  ItemsSource="{Binding ListaPais}" Margin="5">
             <CollectionView.ItemsLayout >
-                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
+                <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                
             </CollectionView.ItemsLayout >
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Pais">
-                    <Button x:Name="Venezuela" Text="{Binding pais}" FontSize="Body"
-                            Command="{Binding BindingContext.TasasCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                            CommandParameter="{Binding pais}"/>
+
+
+                    <Button x:Name="Venezuela" Text="{Binding pais}"  ImageSource="{Binding pais}" 
+                            Command="{Binding BindingContext.TasasCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" 
+                            CommandParameter="{Binding pais}" BackgroundColor="Transparent" BorderWidth="2" BorderColor="{StaticResource Primary}" TextColor="{StaticResource Primary}"/>
+
+
+
+
+
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
        
-    </Grid>
+    
 </ContentPage>
