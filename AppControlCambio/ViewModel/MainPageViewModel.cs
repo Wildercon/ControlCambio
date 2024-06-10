@@ -16,7 +16,9 @@ namespace AppControlCambio.ViewModel
     public partial class MainPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<Pais> listaPais = new ObservableCollection<Pais>();
+        private ObservableCollection<Pais> listaPais = new();
+        [ObservableProperty]
+        private bool activityIndicator = false;
 
         [RelayCommand]
         private async Task Tasas(string pais)
@@ -34,6 +36,7 @@ namespace AppControlCambio.ViewModel
 
         private async Task ObtenerPaises()
         {
+            ActivityIndicator = true;
             var client = new HttpClient();
             var response = await client.GetAsync("http://tasasapi.somee.com/api/Tasa/Paises");
             var responseBody = await response.Content.ReadAsStringAsync();
@@ -48,6 +51,8 @@ namespace AppControlCambio.ViewModel
                     
                 }
             }
+
+            ActivityIndicator = false;
         }
     }
 }

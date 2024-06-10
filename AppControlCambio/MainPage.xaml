@@ -6,8 +6,8 @@
              Title="EasyChange"
              BackgroundColor="{StaticResource Secondary}">
 
-   
-        <!--<Button Grid.Row="0" Text="Modificar Tasas" BackgroundColor="Green" Command="{Binding UpdateTasaCommand}"/>-->
+    <Grid>
+       
         <CollectionView  ItemsSource="{Binding ListaPais}" Margin="5">
             <CollectionView.ItemsLayout >
                 <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
@@ -29,6 +29,9 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-       
-    
+        <ActivityIndicator IsRunning="{Binding ActivityIndicator}" IsVisible="{Binding ActivityIndicator}" 
+         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
+         />
+    </Grid>
+
 </ContentPage>

@@ -10,6 +10,7 @@ namespace AppControlCambio
             Routing.RegisterRoute(nameof(Tasas), typeof(Tasas));
             Routing.RegisterRoute(nameof(UpdateTasas), typeof(UpdateTasas));
             Routing.RegisterRoute(nameof(Login), typeof(Login));
+            Routing.RegisterRoute(nameof(Calculator), typeof(Calculator));
         }
     }
 }

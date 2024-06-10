@@ -6,6 +6,8 @@
              Title="Actualizar Tasas">
     
     <ScrollView>
+
+       
         <CollectionView ItemsSource="{Binding ListaPais}">
             <CollectionView.ItemsLayout >
                 <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>

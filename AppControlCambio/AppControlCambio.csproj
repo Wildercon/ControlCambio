@@ -74,6 +74,7 @@
 	  <None Remove="Resources\Images\ecuador.png" />
 	  <None Remove="Resources\Images\eeuu.png" />
 	  <None Remove="Resources\Images\espana.png" />
+	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\mexico.png" />
 	  <None Remove="Resources\Images\panama.png" />
 	  <None Remove="Resources\Images\peru.png" />
@@ -83,6 +84,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
@@ -92,6 +94,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\Account.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Calculator.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

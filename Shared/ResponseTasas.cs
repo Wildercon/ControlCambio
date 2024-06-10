@@ -10,6 +10,8 @@ namespace Shared
     {
         public string? pais { get; set; } 
         public string? tasa { get; set; } 
-        public string? op { get; set; } 
+        public string? op { get; set; }
+        public string? porcentaje { get; set; }
+
     }
 }

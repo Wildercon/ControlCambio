@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             x:Class="AppControlCambio.Pages.Calculator"
+             Title="Calculator"
+             BackgroundColor="{x:StaticResource Secondary}">
+
+    
+    <VerticalStackLayout Margin="10,50">
+        <Image HorizontalOptions="Center" Source="Calculator.svg" WidthRequest="50"/>
+        <Grid RowDefinitions="auto,auto,auto" ColumnDefinitions="auto,*" RowSpacing="10" Margin="20,50" >
+            <Label 
+                Text="Monto Enviar:"
+                Grid.Row="0"
+                Grid.Column="0"
+                VerticalTextAlignment="Center"
+                FontAttributes="Bold"/>
+            <Entry Grid.Row="0" x:Name="EntryName" Keyboard="Numeric" Grid.Column="1">
+            <Entry.Behaviors>
+                    <toolkit:EventToCommandBehavior 
+                        EventName="TextChanged"
+                        Command="{Binding CalculateCommand}"
+                        CommandParameter="{Binding Text, Source={x:Reference EntryName}}" />
+                </Entry.Behaviors>
+            </Entry>
+            <Label 
+                Text="Tasa:" 
+                Grid.Row="1"
+                Grid.Column="0"
+                FontAttributes="Bold"/>
+            <Label 
+                Text="{Binding Tasa}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Grid.Row="1"
+                Grid.Column="1"/>
+            <Label
+                Text="Monto Recibir:" 
+                Grid.Row="2"
+                Grid.Column="0"
+                FontAttributes="Bold"/>
+            <Label 
+                Text="{Binding ResultCal}"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                Grid.Row="2"
+                Grid.Column="1"/>
+        </Grid>
+        
+    </VerticalStackLayout>
+</ContentPage>

@@ -40,6 +40,11 @@ builder.Services.AddSwaggerGen(c =>
           }
         });
 });
+builder.Services.AddCors(options =>
+    options.AddPolicy("mycors",builder =>
+        builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()
+    )
+);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TasasDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Cadena")));
@@ -50,10 +55,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    
 }
+app.UseSwagger();
+app.UseSwaggerUI();
 
+app.UseCors("mycors");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

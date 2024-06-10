@@ -18,10 +18,10 @@
         Icon="house.svg"
         />
         <ShellContent
-         Title="Calculadora"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" 
-        Icon="calculator.svg"
+         Title="Cuentas"
+        ContentTemplate="{DataTemplate local:Pages.Account}"
+        Route="Page/Account" 
+        Icon="list.svg"
         />
         <ShellContent
         Title="Login"

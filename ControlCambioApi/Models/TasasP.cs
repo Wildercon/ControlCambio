@@ -12,4 +12,8 @@ public partial class TasasP
     public string TipoMoneda { get; set; } = null!;
 
     public decimal ValorMoneda { get; set; }
+
+    public int? PaisR { get; set; }
+
+    public virtual Commission? PaisRNavigation { get; set; }
 }
