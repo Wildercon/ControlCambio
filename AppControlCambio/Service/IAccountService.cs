@@ -10,6 +10,9 @@ namespace AppControlCambio.Service
 {
     public interface IAccountService
     {
-        Task<List<Account>> GetAccounts();
+        Task<List<AccountDTO>> GetAccounts();
+        Task<bool> AddAccount(AccountDTO accountDTO);
+        Task<bool> UpdateAccount(AccountDTO accountDTO);
+        Task<bool> DeleteAccount(int id);
     }
 }

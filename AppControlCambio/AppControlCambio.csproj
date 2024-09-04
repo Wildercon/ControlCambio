@@ -74,10 +74,14 @@
 	  <None Remove="Resources\Images\ecuador.png" />
 	  <None Remove="Resources\Images\eeuu.png" />
 	  <None Remove="Resources\Images\espana.png" />
+	  <None Remove="Resources\Images\lapiz.png" />
 	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\mexico.png" />
 	  <None Remove="Resources\Images\panama.png" />
+	  <None Remove="Resources\Images\papelera.png" />
 	  <None Remove="Resources\Images\peru.png" />
+	  <None Remove="Resources\Images\plusbutton.svg" />
+	  <None Remove="Resources\Images\portapapeles.png" />
 	  <None Remove="Resources\Images\user.svg" />
 	  <None Remove="Resources\Images\venezuela.png" />
 	  <None Remove="Resources\Splash\change.png" />
@@ -86,7 +90,9 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="FluentValidation" Version="11.9.2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Plugin.ValidationRules" Version="1.5.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -94,7 +100,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\AddAccount.xaml.cs">
+	    <DependentUpon>AddAccount.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\Account.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddAccount.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Calculator.xaml">

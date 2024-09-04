@@ -1,5 +1,6 @@
 ﻿
 using AppControlCambio.Pages;
+using AppControlCambio.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Shared;
@@ -16,9 +17,9 @@ namespace AppControlCambio.ViewModel
 {
     public partial class TasasViewModel : ObservableObject , IQueryAttributable
     {
-        private readonly HttpClient _httpClient;
+        private readonly ITasaService _tasaService;
         [ObservableProperty]
-        private ObservableCollection<ResponseTasas> listaTasas = new();
+        private List<ResponseTasas> listaTasas = new();
         [ObservableProperty]
         private string titulo;
         [ObservableProperty]
@@ -47,9 +48,9 @@ namespace AppControlCambio.ViewModel
         private string pais;
         
         
-        public  TasasViewModel( HttpClient httpClient)
+        public  TasasViewModel(ITasaService tasaService )
         {
-            _httpClient = httpClient;
+            _tasaService = tasaService;
             MainThread.BeginInvokeOnMainThread(new Action(async () => await GetTasas()));
         }
         
@@ -66,23 +67,8 @@ namespace AppControlCambio.ViewModel
             {
                 await Task.Delay(10);
             }
-          
-            var response = await _httpClient.GetAsync($"Tasa/Tasas/{pais}?por={selectedPorcentaje}");
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var lista = JsonSerializer.Deserialize<List<ResponseTasas>>(responseBody);
-            if (lista.Any())
-            {
-                foreach (var item in lista)
-                {
-                    ListaTasas.Add(new ResponseTasas
-                    {
-                        pais = item.pais,
-                        tasa = item.tasa,
-                        op = item.op,
-                        porcentaje = item.porcentaje,
-                    });
-                }
-            }
+
+            ListaTasas = await _tasaService.GetTasas(pais, selectedPorcentaje);
             ActivityIndicator = false;
         }
 

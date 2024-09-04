@@ -1,5 +1,6 @@
 ﻿
 using AppControlCambio.Pages;
+using AppControlCambio.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Shared;
@@ -15,8 +16,9 @@ namespace AppControlCambio.ViewModel
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        private readonly ITasaService _tasaService;
         [ObservableProperty]
-        private ObservableCollection<Pais> listaPais = new();
+        private List<string> listaPais = new();
         [ObservableProperty]
         private bool activityIndicator = false;
 
@@ -29,30 +31,15 @@ namespace AppControlCambio.ViewModel
         }
 
         
-        public MainPageViewModel()
+        public MainPageViewModel(ITasaService tasaService)
         {
-            MainThread.BeginInvokeOnMainThread(new Action(async () => await ObtenerPaises()));
+            _tasaService = tasaService;
+            activityIndicator = true;
+            MainThread.BeginInvokeOnMainThread(new Action(async () =>  ListaPais = await tasaService.GetCountries()));
+            
+            activityIndicator = false;
         }
 
-        private async Task ObtenerPaises()
-        {
-            ActivityIndicator = true;
-            var client = new HttpClient();
-            var response = await client.GetAsync("http://tasasapi.somee.com/api/Tasa/Paises");
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            var lista = JsonSerializer.Deserialize<List<Pais>>(responseBody);
-
-            if (lista.Any())
-            {
-                foreach (var item in lista)
-                {
-                    ListaPais.Add(new Pais { pais = item.pais});
-                    
-                }
-            }
-
-            ActivityIndicator = false;
-        }
+       
     }
 }

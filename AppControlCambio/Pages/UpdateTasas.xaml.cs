@@ -4,9 +4,9 @@ namespace AppControlCambio.Pages;
 
 public partial class UpdateTasas : ContentPage
 {
-	public UpdateTasas( UpdateTasasView updateTasasView)
+	public UpdateTasas(UpdateTasasView updateTasasView)
 	{
 		InitializeComponent();
 		BindingContext = updateTasasView;
-	}
+	}	
 }

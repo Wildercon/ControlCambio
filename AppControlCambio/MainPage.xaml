@@ -14,12 +14,12 @@
                 
             </CollectionView.ItemsLayout >
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Pais">
+                <DataTemplate >
 
 
-                    <Button x:Name="Venezuela" Text="{Binding pais}"  ImageSource="{Binding pais}" 
+                    <Button  Text="{Binding .}"  ImageSource="{Binding .}" 
                             Command="{Binding BindingContext.TasasCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" 
-                            CommandParameter="{Binding pais}" BackgroundColor="Transparent" BorderWidth="2" BorderColor="{StaticResource Primary}" TextColor="{StaticResource Primary}"/>
+                            CommandParameter="{Binding .}" BackgroundColor="Transparent" BorderWidth="2" BorderColor="{StaticResource Primary}" TextColor="{StaticResource Primary}"/>
 
 
 

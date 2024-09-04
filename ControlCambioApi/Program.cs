@@ -49,6 +49,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TasasDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Cadena")));
 builder.Services.AddScoped<ITasasServices,TasasServices>();
+builder.Services.AddScoped<IAccountService,AccountService>();
 
 var app = builder.Build();
 

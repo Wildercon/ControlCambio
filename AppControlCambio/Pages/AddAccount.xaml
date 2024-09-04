@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppControlCambio.Pages.AddAccount"           
+             Title="Cuenta">
+    <VerticalStackLayout  Margin="5" Spacing="10" >
+
+        <Entry  Placeholder="Titular" Text="{Binding Account.Name}"/>
+
+        <Entry  Placeholder="Identificación" Text="{Binding Account.IdOwner}"/>
+
+        <Entry  Placeholder="Banco" Text="{Binding Account.Bank}"/>
+
+        <Entry  Placeholder="Cuenta" Text="{Binding Account.AccountNumber}"/>
+
+        <Entry  Placeholder="Observación" Text="{Binding Account.Observation}"/>
+        
+        <Picker   
+            Title="Seleccione un Pais"
+            ItemsSource="{Binding ListCountry}"
+            ItemDisplayBinding="{Binding .}"
+            SelectedItem="{Binding  Account.Country}"                            
+            />
+
+        <Button Text="Agregar" Command="{Binding AddAccountCommand}"  WidthRequest="200" />
+       
+        
+    </VerticalStackLayout>
+</ContentPage>

@@ -9,6 +9,6 @@ namespace ControlCambioApi.Services
         Task<bool> UpdateTasas(Pais pais);
         Task<List<Pais>> GetPais();
 
-        Task<List<TasaPreferencial>> GetTasaPreferencials();
+        Task<RateOfDay> GetTasaPreferencials();
     }
 }

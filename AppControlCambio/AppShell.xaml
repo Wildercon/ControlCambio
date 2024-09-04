@@ -16,17 +16,18 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" 
         Icon="house.svg"
+        
         />
         <ShellContent
          Title="Cuentas"
         ContentTemplate="{DataTemplate local:Pages.Account}"
-        Route="Page/Account" 
+        Route="AccountPage" 
         Icon="list.svg"
         />
         <ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate local:Pages.Login}"
-        Route="Page/Login" 
+        Route="LoginPage" 
         Icon="user.svg"
         />
     </TabBar>

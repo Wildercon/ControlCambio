@@ -42,7 +42,6 @@ namespace ControlCambioApi.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> GetTasaPreferencial()
         {
             var Tasas = await _tasaService.GetTasaPreferencials();

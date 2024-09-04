@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AppControlCambio.Service;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Shared;
 using System;
@@ -14,9 +15,9 @@ namespace AppControlCambio.ViewModel
 {
     public partial class UpdateTasasView: ObservableObject
     {
-
+        
         [ObservableProperty]
-        private ObservableCollection<Pais> listaPais = new ObservableCollection<Pais>();
+        private ObservableCollection<Pais> listaPais = new ();
 
         public UpdateTasasView()
         {

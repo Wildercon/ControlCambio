@@ -21,6 +21,7 @@ public partial class TasasDbContext : DbContext
 
     public virtual DbSet<TasasP> TasasPs { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,18 +36,26 @@ public partial class TasasDbContext : DbContext
                 .HasMaxLength(25)
                 .IsUnicode(false)
                 .HasColumnName("accountnumber");
-            entity.Property(e => e.Mont)
+            entity.Property(e => e.Bank)
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasColumnName("mont");
+                .HasColumnName("bank");
+            entity.Property(e => e.Country)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("country");
+            entity.Property(e => e.IdOwner)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("idOwner");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("name");
-            entity.Property(e => e.Pais)
+            entity.Property(e => e.Observation)
                 .HasMaxLength(20)
                 .IsUnicode(false)
-                .HasColumnName("pais");
+                .HasColumnName("observation");
         });
 
         modelBuilder.Entity<Commission>(entity =>

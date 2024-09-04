@@ -78,31 +78,26 @@ namespace ControlCambioApi.Services
             return pais;
         }
 
-        public async Task<List<TasaPreferencial>> GetTasaPreferencials()
+        public async Task<RateOfDay> GetTasaPreferencials()
         {
-            List<TasaPreferencial> values = new();
-            var paises = await _tasasContext.TasasPs.ToListAsync();
-            var commission = await _tasasContext.Commissions.ToListAsync();
+            
+
+            var paises = await _tasasContext.TasasPs
+                .Where(t => t.Pais == "Venezuela" || t.Pais == "EEUU")
+                .ToListAsync();
+
+            var commision = await _tasasContext.Commissions
+                        .Where(c => c.Pais == "Venezuela" & c.PaisR == "EEUU").FirstOrDefaultAsync(); 
 
             var venezuela = paises.Find(x => x.Pais == "Venezuela");
             var eeuu = paises.Find(x => x.Pais == "EEUU");
-            var mexico = paises.Find(x => x.Pais == "Mexico");
-            var ecuador = paises.Find(x => x.Pais == "Ecuador");
+           
+            var tasaVeee = CalculateTasa(venezuela!.ValorMoneda, eeuu!.ValorMoneda, commision!.IsE, commision.Por, commision.Decimals);
+            
 
+            
 
-            var VeEe = commission.Find(x => x.Pais == "Venezuela" & x.PaisR == "EEUU");
-            var tasaVeee = CalculateTasa(venezuela!.ValorMoneda, eeuu!.ValorMoneda, VeEe!.IsE, VeEe.Por, VeEe.Decimals);
-            values.Add( new TasaPreferencial("Venezuela", "EEUU", tasaVeee  )  );
-
-            var MeVe = commission.Find(x => x.Pais == "Mexico" & x.PaisR == "Venezuela");
-            var tasaMeve = CalculateTasa(mexico!.ValorMoneda, venezuela.ValorMoneda, MeVe!.IsE, MeVe.Por, MeVe.Decimals);
-            values.Add(new TasaPreferencial("Mexico", "Venezuela", tasaMeve));
-
-            var EcVe = commission.Find(x => x.Pais == "Ecuador" & x.PaisR == "Venezuela");
-            var tasaEcVe = CalculateTasa(ecuador!.ValorMoneda, venezuela.ValorMoneda, EcVe!.IsE, EcVe.Por, EcVe.Decimals);
-            values.Add(new TasaPreferencial("Ecuador", "Venezuela", tasaEcVe));
-
-            return values;
+            return new RateOfDay(venezuela.Pais,eeuu.Pais,nameof(tasaVeee),venezuela.TipoMoneda,eeuu.TipoMoneda);
 
          
 

@@ -9,9 +9,13 @@ public partial class Account
 
     public string Name { get; set; } = null!;
 
-    public string Pais { get; set; } = null!;
+    public string Country { get; set; } = null!;
 
     public string Accountnumber { get; set; } = null!;
 
-    public string Mont { get; set; } = null!;
+    public string Observation { get; set; } = null!;
+
+    public string? IdOwner { get; set; }
+
+    public string? Bank { get; set; }
 }

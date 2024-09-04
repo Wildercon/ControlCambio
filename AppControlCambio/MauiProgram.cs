@@ -1,8 +1,12 @@
 ﻿using AppControlCambio.Pages;
 using AppControlCambio.Service;
+using AppControlCambio.Validators;
 using AppControlCambio.ViewModel;
 using CommunityToolkit.Maui;
+using FluentValidation;
 using Microsoft.Extensions.Logging;
+using Shared;
+using System.Text.Json;
 
 namespace AppControlCambio
 {
@@ -26,6 +30,7 @@ namespace AppControlCambio
             builder.Services.AddTransient<TasasViewModel>();
 
 
+
             builder.Services.AddTransient<MainPage> ();
             builder.Services.AddTransient<MainPageViewModel>();
 
@@ -41,8 +46,18 @@ namespace AppControlCambio
             builder.Services.AddTransient<Account>();
             builder.Services.AddTransient<AccountViewModel>();
 
-            builder.Services.AddScoped<IAccountService,AccountService>();
+            builder.Services.AddTransient<AddAccount>();
+            builder.Services.AddTransient<AddAccountVM>();
 
+            builder.Services.AddTransient<IAccountService,AccountService>();
+            builder.Services.AddTransient<ITasaService,TasaService>();
+
+            builder.Services.AddTransient<IValidator<AccountDTO>, AccountValidator>();
+
+            builder.Services.AddSingleton(new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
