@@ -5,15 +5,15 @@
              x:Class="AppControlCambio.Pages.Tasas"
              Title="{Binding Titulo}"
              BackgroundColor="{x:StaticResource Secondary}">
-
+   
 
     <Grid>
        
 
         <ScrollView>
         <VerticalStackLayout>
-
-            <Picker Title="Porcentaje Predeterminado" HorizontalOptions="Center" SelectedItem="{Binding SelectedPorcentaje}">
+               
+                <Picker Title="Porcentaje Predeterminado" HorizontalOptions="Center" SelectedItem="{Binding SelectedPorcentaje}">
                 <Picker.Items>
                     <x:String>5</x:String>
                     <x:String>6</x:String>
@@ -32,7 +32,7 @@
                 </Picker.Items>
             </Picker>
 
-            <CollectionView ItemsSource="{Binding ListaTasas}">
+            <CollectionView ItemsSource="{Binding istaTasas}">
             <CollectionView.ItemsLayout >
                 <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>
             </CollectionView.ItemsLayout >
@@ -70,5 +70,8 @@
         <ActivityIndicator IsRunning="{Binding ActivityIndicator}" IsVisible="{Binding ActivityIndicator}" 
                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
                     />
+        <Grid>
+            <GraphicsView  Drawable="{Binding Drawable}" />
+                    </Grid>
     </Grid>
 </ContentPage>

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
@@ -15,7 +15,7 @@
 		<ApplicationTitle>EasyChange</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.appcontrolcambio</ApplicationId>
+		<ApplicationId>EasyChange</ApplicationId>
 		<ApplicationIdGuid>cc70655f-b8f1-441c-9b45-97147e37e096</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -49,7 +49,7 @@
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\change.png" Color="#512BD4" BaseSize="128,128" />
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" />
+		
 
 
 		<!-- Images -->
@@ -64,39 +64,84 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\Argentinat.png" />
+	  <MauiImage Remove="Resources\Images\Brasilt.png" />
+	  <MauiImage Remove="Resources\Images\changetasas.png" />
+	  <MauiImage Remove="Resources\Images\Chilet.png" />
+	  <MauiImage Remove="Resources\Images\Colombiat.png" />
+	  <MauiImage Remove="Resources\Images\Ecuadort.png" />
+	  <MauiImage Remove="Resources\Images\eeuut.png" />
+	  <MauiImage Remove="Resources\Images\Espanat.png" />
+	  <MauiImage Remove="Resources\Images\Mexicot.png" />
+	  <MauiImage Remove="Resources\Images\Panamat.png" />
+	  <MauiImage Remove="Resources\Images\Perut.png" />
+	  <MauiImage Remove="Resources\Images\Venezuelat.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\AppIcon\change.png" />
 	  <None Remove="Resources\Fonts\MerriweatherSans.ttf" />
 	  <None Remove="Resources\Images\argentina.png" />
+	  <None Remove="Resources\Images\Argentinat.png" />
 	  <None Remove="Resources\Images\brasil.png" />
+	  <None Remove="Resources\Images\Brasilt.png" />
 	  <None Remove="Resources\Images\calculator.svg" />
+	  <None Remove="Resources\Images\changetasas.png" />
 	  <None Remove="Resources\Images\chile.png" />
+	  <None Remove="Resources\Images\Chilet.png" />
 	  <None Remove="Resources\Images\colombia.png" />
+	  <None Remove="Resources\Images\Colombiat.png" />
 	  <None Remove="Resources\Images\ecuador.png" />
+	  <None Remove="Resources\Images\Ecuadort.png" />
 	  <None Remove="Resources\Images\eeuu.png" />
+	  <None Remove="Resources\Images\eeuut.png" />
 	  <None Remove="Resources\Images\espana.png" />
+	  <None Remove="Resources\Images\Espanat.png" />
 	  <None Remove="Resources\Images\lapiz.png" />
 	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\mexico.png" />
+	  <None Remove="Resources\Images\Mexicot.png" />
 	  <None Remove="Resources\Images\panama.png" />
+	  <None Remove="Resources\Images\Panamat.png" />
 	  <None Remove="Resources\Images\papelera.png" />
 	  <None Remove="Resources\Images\peru.png" />
+	  <None Remove="Resources\Images\Perut.png" />
 	  <None Remove="Resources\Images\plusbutton.svg" />
 	  <None Remove="Resources\Images\portapapeles.png" />
 	  <None Remove="Resources\Images\user.svg" />
 	  <None Remove="Resources\Images\venezuela.png" />
+	  <None Remove="Resources\Images\Venezuelat.png" />
 	  <None Remove="Resources\Splash\change.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+	  <EmbeddedResource Include="Resources\Images\Panamat.png" />
+	  <EmbeddedResource Include="Resources\Images\Perut.png" />
+	  <EmbeddedResource Include="Resources\Images\Venezuelat.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.3" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="FluentValidation" Version="11.9.2" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Plugin.ValidationRules" Version="1.5.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Shared\Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Images\Argentinat.png" />
+	  <EmbeddedResource Include="Resources\Images\Brasilt.png" />
+	  <EmbeddedResource Include="Resources\Images\changetasas.png" />
+	  <EmbeddedResource Include="Resources\Images\Chilet.png" />
+	  <EmbeddedResource Include="Resources\Images\Colombiat.png" />
+	  <EmbeddedResource Include="Resources\Images\Ecuadort.png" />
+	  <EmbeddedResource Include="Resources\Images\EEUUt.png" />
+	  <EmbeddedResource Include="Resources\Images\Espanat.png" />
+	  <EmbeddedResource Include="Resources\Images\Mexicot.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -124,6 +169,14 @@
 	  <MauiXaml Update="Pages\UpdateTasas.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.Maui.Controls" Version="8.0.82" />
 	</ItemGroup>
 
 </Project>
