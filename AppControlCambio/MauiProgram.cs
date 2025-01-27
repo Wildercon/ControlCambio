@@ -23,8 +23,10 @@ namespace AppControlCambio
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("MerriweatherSans.ttf", "MerriweatherSans");
+                    fonts.AddFont("Magz.otf", "Magz");
                 });
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://tasasapi.somee.com/api/") });
+        
 
             builder.Services.AddTransient<Tasas>();
             builder.Services.AddTransient<TasasViewModel>();
@@ -48,6 +50,9 @@ namespace AppControlCambio
 
             builder.Services.AddTransient<AddAccount>();
             builder.Services.AddTransient<AddAccountVM>();
+
+            builder.Services.AddTransient<ShareTasa>();
+            builder.Services.AddTransient<ShareTasaVM>();
 
             builder.Services.AddTransient<IAccountService,AccountService>();
             builder.Services.AddTransient<ITasaService,TasaService>();

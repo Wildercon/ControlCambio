@@ -1,6 +1,7 @@
 
 using AppControlCambio.ViewModel;
 using Shared;
+using SkiaSharp.Views.Maui;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
@@ -14,10 +15,8 @@ public partial class Tasas : ContentPage
 	{ 
 		InitializeComponent();
         BindingContext = model;
-	}
+        
+    }
 
-    
 
-   
-   
 }

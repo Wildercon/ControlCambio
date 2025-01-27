@@ -17,7 +17,7 @@ namespace AppControlCambio.ViewModel
     public partial class AccountViewModel : ObservableObject
     {
         [ObservableProperty]
-        private List<AccountDTO> listAccount = new ();
+        private List<AccountDTO> listAccount = [];
         
         
         private readonly IAccountService _AccountService;
@@ -70,7 +70,7 @@ namespace AppControlCambio.ViewModel
         }
 
         [RelayCommand]
-        public async Task ClipboardAccount(AccountDTO account)
+        public static async Task ClipboardAccount(AccountDTO account)
         { 
             var dato = $"Pais:{account.Country}\nTitular:{account.Name}\nCuenta:{account.AccountNumber}";
             if (account.IdOwner != string.Empty) dato +=  $"\nIdentificación: { account.IdOwner}";

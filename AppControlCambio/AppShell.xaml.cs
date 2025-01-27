@@ -13,6 +13,7 @@ namespace AppControlCambio
             Routing.RegisterRoute(nameof(Calculator), typeof(Calculator));
             Routing.RegisterRoute(nameof(Account), typeof(Account));
             Routing.RegisterRoute(nameof(AddAccount), typeof(AddAccount));
+            Routing.RegisterRoute(nameof(ShareTasa), typeof(ShareTasa));
         }
     }
 }

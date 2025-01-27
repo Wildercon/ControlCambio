@@ -32,7 +32,7 @@
                 </Picker.Items>
             </Picker>
 
-            <CollectionView ItemsSource="{Binding istaTasas}">
+            <CollectionView ItemsSource="{Binding ListaTasas}">
             <CollectionView.ItemsLayout >
                 <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>
             </CollectionView.ItemsLayout >
@@ -71,7 +71,12 @@
                     VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
                     />
         <Grid>
-            <GraphicsView  Drawable="{Binding Drawable}" />
-                    </Grid>
+
+            <ImageButton Source="share" 
+            CornerRadius="15" WidthRequest="60" HeightRequest="60" Background="Transparent" 
+            HorizontalOptions="End" VerticalOptions="End" Margin="15" Command="{Binding GoShareTasaCommand}"/>
+
+        </Grid>
+
     </Grid>
 </ContentPage>
