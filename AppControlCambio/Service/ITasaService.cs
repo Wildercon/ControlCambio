@@ -9,8 +9,9 @@ namespace AppControlCambio.Service
 {
     public interface ITasaService
     {
-        Task<List<string>> GetCountries();
+        Task<List<TasasPDTO>> GetCountries();
         Task<List<ResponseTasas>> GetTasas(string pais, int porcentaje);
+        Task<bool> UpdateTasas(TasasPDTO tasas);
 
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,27 +10,20 @@ using System.Threading.Tasks;
 
 namespace AppControlCambio.Service
 {
-    public class TasaService(HttpClient httpClient) : ITasaService
+    public class TasaService(HttpClient httpClient , JsonSerializerOptions jsonSerializer) : ITasaService
     {
         private readonly HttpClient _httpClient = httpClient;
+        private readonly JsonSerializerOptions _serializerOptions = jsonSerializer;
 
-        public async Task<List<string>> GetCountries()
+        public async Task<List<TasasPDTO>> GetCountries()
         {
-            List<string> listCountry = [];
+           
             var response = await _httpClient.GetAsync("Tasa/Paises");
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            var lista = JsonSerializer.Deserialize<List<Pais>>(responseBody); // TODO : Modificar cuando el api solo envia la lista nombre de paises
-
-            if (lista.Count != 0)
-            {
-                foreach (var item in lista)
-                {
-                    listCountry.Add(item.pais);
-
-                }
-            }
-            return listCountry;
+           return JsonSerializer.Deserialize<List<TasasPDTO>>(responseBody,_serializerOptions); 
+                      
+           
         }
 
         public async Task<List<ResponseTasas>> GetTasas(string pais,int porcentaje)
@@ -37,22 +31,15 @@ namespace AppControlCambio.Service
             List<ResponseTasas> ListaTasas = [];
             var response = await _httpClient.GetAsync($"Tasa/Tasas/{pais}?por={porcentaje}");
             var responseBody = await response.Content.ReadAsStringAsync();
-            var lista = JsonSerializer.Deserialize<List<ResponseTasas>>(responseBody);
-            if (lista.Count > 0)
-            {
-                foreach (var item in lista)
-                {
-                    ListaTasas.Add(new ResponseTasas
-                    {
-                        pais = item.pais,
-                        tasa = item.tasa,
-                        op = item.op,
-                        porcentaje = item.porcentaje,
-                    });
-                }
-            }
+            return JsonSerializer.Deserialize<List<ResponseTasas>>(responseBody);
+            
+        }
 
-            return ListaTasas;
+        public async Task<bool> UpdateTasas(TasasPDTO tasa)
+        {
+            var response = await _httpClient.PutAsJsonAsync("http://tasasapi.somee.com/api/Tasa", tasa);
+            var responseBody = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<bool>(responseBody);
         }
     }
 }

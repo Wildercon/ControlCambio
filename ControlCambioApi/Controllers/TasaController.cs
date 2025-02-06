@@ -28,7 +28,7 @@ namespace ControlCambioApi.Controllers
             return Ok(listaPaises);
         }
         [HttpPut]
-        public async Task<IActionResult> UpdateTasas(Pais pais)
+        public async Task<IActionResult> UpdateTasas(TasasPDTO pais)
         {
             var result = await _tasaService.UpdateTasas(pais);
             return Ok(result);
@@ -38,6 +38,7 @@ namespace ControlCambioApi.Controllers
         [HttpGet("Tasas/{pais}")]
         public async Task<IActionResult> Venezuela(decimal por, string pais) { 
             var Tasas = await _tasaService.GetTasas(por,pais);
+
             return Ok(Tasas);
         }
 

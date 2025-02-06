@@ -1,4 +1,5 @@
-﻿using Shared;
+﻿using ControlCambioApi.Models;
+using Shared;
 
 namespace ControlCambioApi.Services
 {
@@ -6,8 +7,8 @@ namespace ControlCambioApi.Services
     {
         Task<List<ResponseTasas>> GetTasas(decimal por, string pais);
         
-        Task<bool> UpdateTasas(Pais pais);
-        Task<List<Pais>> GetPais();
+        Task<bool> UpdateTasas(TasasPDTO pais);
+        Task<List<TasasPDTO>> GetPais();
 
         Task<RateOfDay> GetTasaPreferencials();
     }

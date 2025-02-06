@@ -12,6 +12,7 @@ namespace Shared
         public string? tasa { get; set; } 
         public string? op { get; set; }
         public string? porcentaje { get; set; }
+        public string? tipomoneda {  get; set; }
 
     }
 }

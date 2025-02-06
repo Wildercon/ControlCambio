@@ -1,6 +1,7 @@
 ﻿using AppControlCambio.Service;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.VisualBasic;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -18,45 +19,37 @@ namespace AppControlCambio.ViewModel
         
         [ObservableProperty]
         private ObservableCollection<Pais> listaPais = new ();
+        private readonly ITasaService _tasasService;
 
-        public UpdateTasasView()
+        public UpdateTasasView( ITasaService tasaService)
         {
+            _tasasService = tasaService;
             MainThread.BeginInvokeOnMainThread(new Action(async () => await ObtenerPaises()));
         }
         private async Task ObtenerPaises()
         {
-            var client = new HttpClient();
-            var response = await client.GetAsync("http://tasasapi.somee.com/api/Tasa/Paises");
-            var responseBody = await response.Content.ReadAsStringAsync();
+            var lista =  await _tasasService.GetCountries();
 
-            var lista = JsonSerializer.Deserialize<List<Pais>>(responseBody);
-
-            if (lista.Any())
+            foreach (var item in lista)
             {
-                foreach (var item in lista)
-                {
-                    ListaPais.Add(new Pais { pais = item.pais,valorMoneda= item.valorMoneda});
-                    
-                }
+                ListaPais.Add(new Pais { pais = item.Pais, valorMoneda = item.ValorMoneda });
+
             }
+
         }
 
         [RelayCommand]
         private async Task UpdateTasa(Pais pais)
         {
-            var client = new HttpClient();
-            var response = await client.PutAsJsonAsync("http://tasasapi.somee.com/api/Tasa", pais);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<bool>(responseBody);
+            var tasasP = new TasasPDTO(pais.pais,pais.valorMoneda, DateAndTime.Now.ToString("dd/MM H:mm  tt"),"");
+            var result = await _tasasService.UpdateTasas(tasasP);
+
 
             if (result)
-            {
                 await Shell.Current.DisplayAlert("Exitoso", "Tasa Actualizada", "Ok");
-            }
             else
-            {
                 await Shell.Current.DisplayAlert("Error", "Intente de Nuevo", "Ok");
-            }
+
         }
     }
 }

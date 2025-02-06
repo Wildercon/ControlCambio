@@ -19,10 +19,14 @@ public partial class TasasDbContext : DbContext
 
     public virtual DbSet<Commission> Commissions { get; set; }
 
+    public virtual DbSet<DataCommission> DataCommissions { get; set; }
+
     public virtual DbSet<TasasP> TasasPs { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
-    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Account>(entity =>
@@ -33,7 +37,7 @@ public partial class TasasDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Accountnumber)
-                .HasMaxLength(25)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("accountnumber");
             entity.Property(e => e.Bank)
@@ -53,7 +57,7 @@ public partial class TasasDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("name");
             entity.Property(e => e.Observation)
-                .HasMaxLength(20)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("observation");
         });
@@ -75,12 +79,34 @@ public partial class TasasDbContext : DbContext
                 .IsUnicode(false);
         });
 
+        modelBuilder.Entity<DataCommission>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Accounts__3214EC07A9ADF2CF");
+
+            entity.ToTable("DataCommission");
+
+            entity.Property(e => e.Op)
+                .HasMaxLength(1)
+                .IsUnicode(false);
+
+            entity.HasOne(d => d.PaisENavigation).WithMany(p => p.DataCommissionPaisENavigations)
+                .HasForeignKey(d => d.PaisE)
+                .HasConstraintName("FK_Accounts_Country");
+
+            entity.HasOne(d => d.PaisRNavigation).WithMany(p => p.DataCommissionPaisRNavigations)
+                .HasForeignKey(d => d.PaisR)
+                .HasConstraintName("FK_Accounts_TasaP");
+        });
+
         modelBuilder.Entity<TasasP>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__TasasP__3214EC07C46A6457");
 
             entity.ToTable("TasasP");
 
+            entity.Property(e => e.FechaA)
+                .HasMaxLength(100)
+                .IsUnicode(false);
             entity.Property(e => e.Pais)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -88,10 +114,6 @@ public partial class TasasDbContext : DbContext
                 .HasMaxLength(3)
                 .IsUnicode(false);
             entity.Property(e => e.ValorMoneda).HasColumnType("decimal(10, 2)");
-
-            entity.HasOne(d => d.PaisRNavigation).WithMany(p => p.TasasPs)
-                .HasForeignKey(d => d.PaisR)
-                .HasConstraintName("fk_commission");
         });
 
         OnModelCreatingPartial(modelBuilder);

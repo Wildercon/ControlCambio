@@ -11,9 +11,9 @@ public partial class Account
 
     public string Country { get; set; } = null!;
 
-    public string Accountnumber { get; set; } = null!;
+    public string? Accountnumber { get; set; }
 
-    public string Observation { get; set; } = null!;
+    public string? Observation { get; set; }
 
     public string? IdOwner { get; set; }
 

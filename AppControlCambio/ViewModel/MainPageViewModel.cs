@@ -18,7 +18,7 @@ namespace AppControlCambio.ViewModel
     {
         private readonly ITasaService _tasaService;
         [ObservableProperty]
-        private List<string> listaPais = new();
+        private List<TasasPDTO> listaPais = [];
         [ObservableProperty]
         private bool activityIndicator = false;
 

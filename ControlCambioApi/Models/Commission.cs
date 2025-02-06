@@ -18,6 +18,4 @@ public partial class Commission
     public int Decimals { get; set; }
 
     public bool IsE { get; set; }
-
-    public virtual ICollection<TasasP> TasasPs { get; set; } = new List<TasasP>();
 }

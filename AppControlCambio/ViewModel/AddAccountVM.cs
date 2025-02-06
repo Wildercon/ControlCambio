@@ -19,7 +19,7 @@ namespace AppControlCambio.ViewModel
         private readonly IAccountService _accountService;
         private readonly IValidator<AccountDTO> _validator;
         [ObservableProperty]
-        private List<string> listCountry = [];
+        private List<TasasPDTO> listCountry = [];
 
        
 

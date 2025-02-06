@@ -9,6 +9,7 @@ using Microsoft.Maui.Graphics;
 using System.Diagnostics.Metrics;
 using SkiaSharp;
 using AppControlCambio.Pages;
+using System.Threading.Tasks;
 
 
 namespace AppControlCambio.ViewModel
@@ -41,6 +42,7 @@ namespace AppControlCambio.ViewModel
             }
         }
         public string pais;
+        
 
 
         public TasasViewModel(ITasaService tasaService)
@@ -81,9 +83,7 @@ namespace AppControlCambio.ViewModel
         {
             await Shell.Current.GoToAsync(nameof(ShareTasa), true, new Dictionary<string, object> { { "Tasas", ListaTasas },{"Country",pais } });
         }
+        
     }
-
-
-
 }
    

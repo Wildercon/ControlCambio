@@ -28,7 +28,7 @@ namespace ControlCambioApi.Services
                     {                       
                         decimal Porc = por == 0 ? listaC.Por : por; 
                         var tasa = CalculateTasa(paisSeleccionado!.ValorMoneda, paise.ValorMoneda, listaC.IsE, Porc, listaC.Decimals);
-                        Tasas.Add(new ResponseTasas { pais = paise.Pais, tasa = tasa.ToString(), op = listaC.Op, porcentaje = Porc.ToString() });
+                        Tasas.Add(new ResponseTasas { pais = paise.Pais, tasa = tasa.ToString(), op = listaC.Op, porcentaje = Porc.ToString() ,tipomoneda = paise.TipoMoneda});
                     }else
                         Tasas.Add(new ResponseTasas { pais = paise.Pais, tasa = "No Registrada",op = "No Registrada",porcentaje= "No Registrada" });
                 }
@@ -51,10 +51,11 @@ namespace ControlCambioApi.Services
         }
         
 
-        public async Task<bool> UpdateTasas(Pais pais)
+        public async Task<bool> UpdateTasas(TasasPDTO pais)
         {
-            var paisU = _tasasContext.TasasPs.FirstOrDefault(x=> x.Pais.Equals(pais.pais));
-            paisU!.ValorMoneda = pais.valorMoneda;
+            var paisU = _tasasContext.TasasPs.FirstOrDefault(x=> x.Pais.Equals(pais.Pais));
+            paisU!.ValorMoneda = pais.ValorMoneda;
+            paisU.FechaA = pais.FechaA;
 
             _tasasContext?.Update(paisU);
             var result = await _tasasContext!.SaveChangesAsync();
@@ -62,20 +63,10 @@ namespace ControlCambioApi.Services
             return result > 0;
         }
 
-        public async Task<List<Pais>> GetPais()
+        public async Task<List<TasasPDTO>> GetPais()
         {
-            List<Pais> pais = new();
-            var listaPaises = await _tasasContext.TasasPs.Select(x => new { x.Pais, x.ValorMoneda }).ToListAsync();
+            return await _tasasContext.TasasPs.Select( t => new TasasPDTO(t.Pais,t.ValorMoneda,t.FechaA,t.TipoMoneda)).ToListAsync();
 
-            foreach (var item in listaPaises)
-            {
-                pais.Add(new Pais {
-                    pais = item.Pais,
-                    valorMoneda = item.ValorMoneda
-                });
-            }
-
-            return pais;
         }
 
         public async Task<RateOfDay> GetTasaPreferencials()

@@ -13,7 +13,9 @@ public partial class TasasP
 
     public decimal ValorMoneda { get; set; }
 
-    public int? PaisR { get; set; }
+    public required string FechaA { get; set; }
 
-    public virtual Commission? PaisRNavigation { get; set; }
+    public virtual ICollection<DataCommission> DataCommissionPaisENavigations { get; set; } = new List<DataCommission>();
+
+    public virtual ICollection<DataCommission> DataCommissionPaisRNavigations { get; set; } = new List<DataCommission>();
 }
