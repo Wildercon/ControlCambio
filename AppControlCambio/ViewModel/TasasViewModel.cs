@@ -10,6 +10,7 @@ using System.Diagnostics.Metrics;
 using SkiaSharp;
 using AppControlCambio.Pages;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Views;
 
 
 namespace AppControlCambio.ViewModel
@@ -74,8 +75,10 @@ namespace AppControlCambio.ViewModel
         [RelayCommand]
         private async Task Calculator(ResponseTasas por)
         {
-            var url = $"{nameof(Calculator)}?tasa={por.tasa}&op={por.op}";
-            await Shell.Current.GoToAsync(url);
+            
+            var popup = new Calculator(Convert.ToDecimal(por.tasa), por.op, por.tipomoneda, por.tipomonedaE);
+            
+            await Shell.Current.ShowPopupAsync(popup);
 
         }
         [RelayCommand]

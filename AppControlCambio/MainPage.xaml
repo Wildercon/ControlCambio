@@ -1,58 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:Shared;assembly=Shared"
-             x:Class="AppControlCambio.MainPage"
-             Title="EasyChange"
-             BackgroundColor="{StaticResource Secondary}"
-             >
+<ContentPage
+    x:Class="AppControlCambio.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Shared;assembly=Shared"
+    Title="EasyChange">
 
-    <Grid RowDefinitions="*" >
-       
-        <CollectionView  ItemsSource="{Binding ListaPais}" VerticalOptions="FillAndExpand" >
-            <CollectionView.ItemsLayout >
+    <Grid RowDefinitions="*">
+
+        <CollectionView ItemsSource="{Binding ListaPais}" VerticalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
-                
-            </CollectionView.ItemsLayout >
+
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:TasasPDTO">
 
-                    <Border VerticalOptions="FillAndExpand"  Padding="5" Margin="0,5,0,0">
+                    <Border
+                        Margin="0,5,0,0"
+                        Padding="5"
+                        VerticalOptions="FillAndExpand">
                         <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="10"/>
+                            <RoundRectangle CornerRadius="10" />
                         </Border.StrokeShape>
 
-                        <Grid RowDefinitions="auto,auto" ColumnDefinitions=".70*,.30*" VerticalOptions="FillAndExpand" RowSpacing="3">
+                        <Grid
+                            ColumnDefinitions=".70*,.30*"
+                            RowDefinitions="auto,auto"
+                            RowSpacing="3"
+                            VerticalOptions="FillAndExpand">
 
-                            <HorizontalStackLayout  Grid.Row="0" >
-                                
-                                <Image Grid.Column="0" Source="{Binding Pais}" WidthRequest="30" HorizontalOptions="Start"  Margin="0,0,10,0"/>
-                                <Label Grid.Column="1" Text="{Binding Pais}" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" FontSize="20" FontFamily="Magz"/>
+                            <HorizontalStackLayout Grid.Row="0">
+
+                                <Image
+                                    Grid.Column="0"
+                                    Margin="0,0,10,0"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding Pais}"
+                                    WidthRequest="30" />
+                                <Label
+                                    Grid.Column="1"
+                                    FontFamily="Magz"
+                                    FontSize="20"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding Pais}"
+                                    VerticalTextAlignment="Center" />
 
                             </HorizontalStackLayout>
                             <HorizontalStackLayout Grid.Column="1">
-                                <Label  Text="{Binding ValorMoneda}"  Margin="5,5" HorizontalOptions="End" FontFamily="Magz" FontSize="16"/>
-                                <Label  Text="{Binding TipoMoneda}"  Margin="5,5" HorizontalOptions="End" FontFamily="Magz" FontSize="16" />
+                                <Label
+                                    Margin="5,5"
+                                    FontFamily="Magz"
+                                    FontSize="16"
+                                    HorizontalOptions="End"
+                                    Text="{Binding ValorMoneda}" />
+                                <Label
+                                    Margin="5,5"
+                                    FontFamily="Magz"
+                                    FontSize="16"
+                                    HorizontalOptions="End"
+                                    Text="{Binding TipoMoneda}" />
                             </HorizontalStackLayout>
-                            
-                            
-                            <HorizontalStackLayout Grid.Row="1">
-                                <Label  Text="Actualizado:" VerticalOptions="Center" FontFamily="Magz" Margin="5,0,15,0" FontSize="16"/>
-                                <Label  Text="{Binding FechaA}" VerticalOptions="Center" FontFamily="Magz"/>
-                                
-                            </HorizontalStackLayout>
-                            <Button Grid.Row="1" Grid.Column="2" Text="Enviar"  WidthRequest="100" HeightRequest="30" FontSize="15" Padding="0"
-                                    Command="{Binding BindingContext.TasasCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}}" FontFamily="Magz"
-                                    CommandParameter="{Binding Pais}" BackgroundColor="Transparent" BorderWidth="2" BorderColor="{StaticResource Primary}" TextColor="{StaticResource Primary}" />
 
-                            
+
+                            <HorizontalStackLayout Grid.Row="1">
+                                <Label
+                                    Margin="5,0,15,0"
+                                    FontFamily="Magz"
+                                    FontSize="16"
+                                    Text="Actualizado:"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    FontFamily="Magz"
+                                    Text="{Binding FechaA}"
+                                    VerticalOptions="Center" />
+
+                            </HorizontalStackLayout>
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Padding="0"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Primary}"
+                                BorderWidth="2"
+                                Command="{Binding BindingContext.TasasCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                CommandParameter="{Binding Pais}"
+                                FontFamily="Magz"
+                                FontSize="15"
+                                HeightRequest="30"
+                                Text="Enviar"
+                                TextColor="{StaticResource Primary}"
+                                WidthRequest="100" />
+
+
 
 
                         </Grid>
-                        
-                       
 
-                   </Border>
+
+
+                    </Border>
 
 
 
@@ -64,9 +111,11 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <ActivityIndicator IsRunning="{Binding ActivityIndicator}" IsVisible="{Binding ActivityIndicator}" 
-         VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" 
-         />
+        <ActivityIndicator
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding ActivityIndicator}"
+            IsVisible="{Binding ActivityIndicator}"
+            VerticalOptions="CenterAndExpand" />
     </Grid>
 
 </ContentPage>

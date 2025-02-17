@@ -1,5 +1,6 @@
 ﻿using ControlCambioApi.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Shared;
 using System.Runtime.InteropServices;
 
@@ -15,12 +16,17 @@ namespace ControlCambioApi.Services
         }
         public async Task<List<ResponseTasas>> GetTasas(decimal por, string pais)
         {           
+
             var Tasas = new List<ResponseTasas>();
             var paises = await _tasasContext.TasasPs.ToListAsync();
             var commission = await _tasasContext.Commissions.Where(x => x.Pais==pais).ToListAsync();
             var paisSeleccionado = paises.FirstOrDefault(x => x.Pais == pais);
+            
+
+
             foreach (var paise in paises)
             {
+                
                 if(paise.Pais != pais)
                 {
                     var listaC = commission.Find(x => x.PaisR == paise.Pais);
@@ -28,7 +34,7 @@ namespace ControlCambioApi.Services
                     {                       
                         decimal Porc = por == 0 ? listaC.Por : por; 
                         var tasa = CalculateTasa(paisSeleccionado!.ValorMoneda, paise.ValorMoneda, listaC.IsE, Porc, listaC.Decimals);
-                        Tasas.Add(new ResponseTasas { pais = paise.Pais, tasa = tasa.ToString(), op = listaC.Op, porcentaje = Porc.ToString() ,tipomoneda = paise.TipoMoneda});
+                        Tasas.Add(new ResponseTasas { pais = paise.Pais, tasa = tasa.ToString(), op = listaC.Op, porcentaje = Porc.ToString() ,tipomoneda = paise.TipoMoneda,tipomonedaE = paisSeleccionado.TipoMoneda});
                     }else
                         Tasas.Add(new ResponseTasas { pais = paise.Pais, tasa = "No Registrada",op = "No Registrada",porcentaje= "No Registrada" });
                 }

@@ -11,9 +11,9 @@ using System.Windows.Input;
 
 namespace AppControlCambio.ViewModel
 {
-    public partial class CalculatorViewModel : ObservableObject,IQueryAttributable
+    public partial class CalculatorViewModel : ObservableObject
     {
-                   
+        [ObservableProperty]
         private string op;
         [ObservableProperty]
         private decimal tasa;
@@ -21,18 +21,13 @@ namespace AppControlCambio.ViewModel
         private decimal resultCal;
         [ObservableProperty]
         private decimal resultCalE;
+        [ObservableProperty]
+        private string monedaR;
+        [ObservableProperty]
+        private string monedaE;
+        
 
         private bool eventA = false;
-
-
-
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
-        {
-            op = query["op"].ToString();
-            Tasa = decimal.Parse(query["tasa"].ToString());
-            ResultCal = Tasa;
-            ResultCalE = 1;
-        }
 
         [RelayCommand]
         private void OnCalculate(string mont)
@@ -48,7 +43,8 @@ namespace AppControlCambio.ViewModel
             if (!eventA)
             {
                 var monto = decimal.Parse(mont);
-                ResultCal = op == "*" ? monto * Tasa : monto / Tasa;
+                var result = Op == "*" ? monto * Tasa : monto / Tasa;
+                ResultCal = decimal.Round(result, 2);
             }
             
         }
@@ -67,7 +63,8 @@ namespace AppControlCambio.ViewModel
             if (eventA)
             {
                 var monto = decimal.Parse(mont);
-                ResultCalE = op == "*" ? monto / Tasa : monto * Tasa;
+                var result = Op == "*" ? monto / Tasa : monto * Tasa;
+                ResultCalE = decimal.Round(result,2);
             }
         }
 

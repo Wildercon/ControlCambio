@@ -1,79 +1,77 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<toolkitp:Popup
     x:Class="AppControlCambio.Pages.Calculator"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
-    Title="Calculator"
-    BackgroundColor="{x:StaticResource Secondary}">
+    xmlns:toolkitp="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <Border Stroke="{StaticResource Primary}">
 
 
-    <VerticalStackLayout Margin="10,50">
-        <Image
-            HorizontalOptions="Center"
-            Source="Calculator.svg"
-            WidthRequest="50" />
-        <Grid
-            Margin="20,50"
-            ColumnDefinitions="auto,*"
-            RowDefinitions="auto,auto,auto"
-            RowSpacing="10">
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                FontAttributes="Bold"
-                Text="Monto Enviar:"
-                VerticalTextAlignment="Center" />
-            <Entry
-                x:Name="EntryE"
-                Grid.Row="0"
-                Grid.Column="1"
-                Keyboard="Numeric"
-                Text="{Binding ResultCalE}">
-                <Entry.Behaviors>
-                    <toolkit:EventToCommandBehavior
-                        Command="{Binding CalculateCommand}"
-                        CommandParameter="{Binding Text, Source={x:Reference EntryE}}"
-                        EventName="TextChanged" />
-                </Entry.Behaviors>
-
-            </Entry>
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                FontAttributes="Bold"
-                Text="Tasa:" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
+        <VerticalStackLayout Padding="5" BackgroundColor="Black">
+            <Image
                 HorizontalOptions="Center"
-                Text="{Binding Tasa}"
-                VerticalOptions="Center" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                FontAttributes="Bold"
-                Text="Monto Recibir:" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="1"
-                HorizontalOptions="Center"
-                Text="{Binding ResultCal}"
-                VerticalOptions="Center" />
-        </Grid>
-        <Entry
-            x:Name="EntryR"
-            Grid.Row="0"
-            Keyboard="Numeric"
-            Text="{Binding ResultCal}">
+                Source="Calculator.svg"
+                WidthRequest="50" />
+            <Grid
+                Margin="0"
+                RowDefinitions="auto,auto"
+                RowSpacing="10">
+                <HorizontalStackLayout Grid.Row="0">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="MerriweatherSans"
+                        Text="{Binding MonedaE}"
+                        VerticalOptions="Center" />
+                    <Entry
+                        x:Name="EntryE"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontFamily="MerriweatherSans"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        Text="{Binding ResultCalE}"
+                        WidthRequest="200">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                Command="{Binding CalculateCommand}"
+                                CommandParameter="{Binding Text, Source={x:Reference EntryE}}"
+                                EventName="TextChanged" />
+                        </Entry.Behaviors>
 
-            <Entry.Behaviors>
-                <toolkit:EventToCommandBehavior
-                    Command="{Binding CalculateRCommand}"
-                    CommandParameter="{Binding Text, Source={x:Reference EntryR}}"
-                    EventName="TextChanged" />
-            </Entry.Behaviors>
+                    </Entry>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="1">
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="MerriweatherSans"
+                        Text="{Binding MonedaR}"
+                        VerticalOptions="Center" />
+                    <Entry
+                        x:Name="EntryR"
+                        FontFamily="MerriweatherSans"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        Text="{Binding ResultCal}"
+                        WidthRequest="200">
+                        <Entry.Behaviors>
+                            <toolkit:EventToCommandBehavior
+                                Command="{Binding CalculateRCommand}"
+                                CommandParameter="{Binding Text, Source={x:Reference EntryR}}"
+                                EventName="TextChanged" />
+                        </Entry.Behaviors>
 
-        </Entry>
-    </VerticalStackLayout>
-</ContentPage>
+                    </Entry>
+                </HorizontalStackLayout>
+
+
+
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </Border>
+
+
+</toolkitp:Popup>

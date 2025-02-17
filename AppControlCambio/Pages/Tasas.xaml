@@ -4,8 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:model="clr-namespace:Shared;assembly=Shared"
-    Title="{Binding Titulo}"
-    BackgroundColor="{x:StaticResource Secondary}">
+    Title="{Binding Titulo}">
 
 
     <Grid>
@@ -13,28 +12,40 @@
 
         <ScrollView>
             <VerticalStackLayout>
+                <Grid>
+                    <Picker
+                        Title="Porcentaje Predeterminado"
+                        HorizontalOptions="Start"
+                        SelectedItem="{Binding SelectedPorcentaje}">
+                        <Picker.Items>
+                            <x:String>5</x:String>
+                            <x:String>6</x:String>
+                            <x:String>7</x:String>
+                            <x:String>8</x:String>
+                            <x:String>9</x:String>
+                            <x:String>10</x:String>
+                            <x:String>11</x:String>
+                            <x:String>12</x:String>
+                            <x:String>13</x:String>
+                            <x:String>14</x:String>
+                            <x:String>15</x:String>
+                            <x:String>16</x:String>
+                            <x:String>17</x:String>
+                            <x:String>18</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <ImageButton
+                        Margin="15"
+                        
+                        Command="{Binding GoShareTasaCommand}"
+                        CornerRadius="15"
+                        HeightRequest="30"
+                        HorizontalOptions="End"
+                        Source="share"
+                        VerticalOptions="End"
+                        WidthRequest="30" />
+                </Grid>
 
-                <Picker
-                    Title="Porcentaje Predeterminado"
-                    HorizontalOptions="Center"
-                    SelectedItem="{Binding SelectedPorcentaje}">
-                    <Picker.Items>
-                        <x:String>5</x:String>
-                        <x:String>6</x:String>
-                        <x:String>7</x:String>
-                        <x:String>8</x:String>
-                        <x:String>9</x:String>
-                        <x:String>10</x:String>
-                        <x:String>11</x:String>
-                        <x:String>12</x:String>
-                        <x:String>13</x:String>
-                        <x:String>14</x:String>
-                        <x:String>15</x:String>
-                        <x:String>16</x:String>
-                        <x:String>17</x:String>
-                        <x:String>18</x:String>
-                    </Picker.Items>
-                </Picker>
 
                 <CollectionView ItemsSource="{Binding ListaTasas}">
                     <CollectionView.ItemsLayout>
@@ -43,21 +54,16 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:ResponseTasas">
-                            <Border Padding="0" HorizontalOptions="FillAndExpand">
+                            <Border HorizontalOptions="FillAndExpand">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="10" />
 
                                 </Border.StrokeShape>
-                                <Grid
-                                    Margin="0,0,0,0"
-                                    ColumnDefinitions="auto,* "
-                                    RowDefinitions="auto,auto,auto, auto, auto">
+                                <Grid ColumnDefinitions="auto,* " RowDefinitions="auto,auto,auto, auto, auto">
 
                                     <VerticalStackLayout
                                         Grid.Row="0"
                                         Grid.ColumnSpan="2"
-                                        Margin="0"
-                                        Padding="0"
                                         BackgroundColor="{StaticResource Primary}">
 
                                         <Label
@@ -71,44 +77,60 @@
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="0"
+                                        Padding="7,0"
                                         FontAttributes="Bold"
+                                        FontFamily="MerriweatherSans"
                                         Text="Tasa:" />
                                     <Label
                                         Grid.Row="1"
                                         Grid.Column="1"
+                                        Padding="7,0"
+                                        FontFamily="MerriweatherSans"
                                         HorizontalOptions="End"
                                         Text="{Binding tasa}" />
                                     <Label
                                         Grid.Row="2"
                                         Grid.Column="0"
+                                        Padding="7,0"
                                         FontAttributes="Bold"
+                                        FontFamily="MerriweatherSans"
                                         Text="Op:" />
                                     <Label
                                         Grid.Row="2"
                                         Grid.Column="1"
+                                        Padding="7,0"
+                                        FontFamily="MerriweatherSans"
                                         FontSize="20"
                                         HorizontalOptions="End"
                                         Text="{Binding op}" />
                                     <Label
                                         Grid.Row="3"
                                         Grid.Column="0"
+                                        Padding="7,0"
                                         FontAttributes="Bold"
+                                        FontFamily="MerriweatherSans"
                                         Text="Porcentaje:" />
                                     <Label
                                         Grid.Row="3"
                                         Grid.Column="1"
+                                        Padding="7,0"
+                                        FontFamily="MerriweatherSans"
                                         HorizontalOptions="End"
                                         Text="{Binding porcentaje}" />
                                     <Button
                                         Grid.Row="4"
                                         Grid.Column="1"
-                                        Margin="0,10,0,0"
+                                        Margin="8"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="{StaticResource Primary}"
+                                        BorderWidth="2"
                                         Command="{Binding BindingContext.CalculatorCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
                                         CommandParameter="{Binding .}"
+                                        FontFamily="Magz"
                                         FontSize="15"
                                         HorizontalOptions="End"
-                                        Text="Calcular &gt;"
-                                        WidthRequest="100" />
+                                        Text="Calcular "
+                                        WidthRequest="88" />
                                 </Grid>
 
                             </Border>
@@ -124,20 +146,7 @@
             IsRunning="{Binding ActivityIndicator}"
             IsVisible="{Binding ActivityIndicator}"
             VerticalOptions="CenterAndExpand" />
-        <Grid>
 
-            <ImageButton
-                Margin="15"
-                Background="Transparent"
-                Command="{Binding GoShareTasaCommand}"
-                CornerRadius="15"
-                HeightRequest="60"
-                HorizontalOptions="End"
-                Source="share"
-                VerticalOptions="End"
-                WidthRequest="60" />
-
-        </Grid>
 
     </Grid>
 </ContentPage>
