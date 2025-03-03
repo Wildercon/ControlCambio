@@ -35,8 +35,9 @@ namespace AppControlCambio.Service
             var response = await _httpClient.GetAsync("Account");
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            return JsonSerializer.Deserialize<List<AccountDTO>>(responseBody, _serializerOptions);
-          
+            return  JsonSerializer.Deserialize<List<AccountDTO>>(responseBody, _serializerOptions);
+
+           
         }
 
         public async Task<bool> UpdateAccount(AccountDTO accountDTO)

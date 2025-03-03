@@ -116,21 +116,23 @@ namespace AppControlCambio.ViewModel
         {
 
             Assembly assembly = GetType().GetTypeInfo().Assembly;
-            using Stream stream = assembly.GetManifestResourceStream("AppControlCambio.Resources.Images.changee.png");
+            using Stream stream = assembly.GetManifestResourceStream("AppControlCambio.Resources.Images.fondotasas.png");
             var _image = PlatformImage.FromStream(stream);
             canvas.DrawImage(_image, 0, 0, dirtyRect.Width-70, 350);
             canvas.FontSize = 26;
-            canvas.FontColor = Colors.Black;
+            canvas.FontColor = Colors.White;
             canvas.Font = new Font("Magz.otf");
-            canvas.DrawString($"envia desde\n   {country}", 50, 130, HorizontalAlignment.Left);
+            canvas.DrawString($"envia desde\n   {country}", dirtyRect.Width-90,90,HorizontalAlignment.Right);
             using Stream stream1 = assembly.GetManifestResourceStream($"AppControlCambio.Resources.Images.{country}t.png");
             var _image1 = PlatformImage.FromStream(stream1);
-            canvas.DrawImage(_image1, 60, 170, 120, 120);
+            canvas.DrawImage(_image1, 180, 130, 120, 120);
             canvas.FontSize = 20;
-            
 
-            var image = 60;
-            var text = 77;
+            int cont = 1;
+            var imagey = 165;
+            var texty = 185;
+            var imagex = 7;
+            var textx = 30;
             foreach (var tasa in listTasas)
             {
                 if (tasa.tasa != "No Registrada")
@@ -138,11 +140,24 @@ namespace AppControlCambio.ViewModel
                     using Stream stream2 = assembly.GetManifestResourceStream($"AppControlCambio.Resources.Images.{tasa.pais}t.png");
 
                     var _image2 = PlatformImage.FromStream(stream2);
+                    if (cont % 2 == 0)
+                    {
+                        imagex += 80;
+                        textx += 80;
+                    }
+                    if (cont % 2 != 0 & imagex != 7)
+                    {
 
-                    canvas.DrawImage(_image2, dirtyRect.Width - 110, image, 20, 20);
-                    canvas.DrawString(tasa.tasa, dirtyRect.Width - 125, text, HorizontalAlignment.Right);// Dibuja el texto sobre la imagen
-                    image += 30;
-                    text += 30;
+                        imagex -= 80;
+                        textx -= 80;
+                    }
+
+                    canvas.DrawImage(_image2, imagex, imagey, 20, 20);
+                    canvas.DrawString(tasa.tasa,textx, texty, HorizontalAlignment.Left);// Dibuja el texto sobre la imagen
+                    imagey += 20;
+                    texty += 20;
+                   
+                    cont++;
                 }
 
             }

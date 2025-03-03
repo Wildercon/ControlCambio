@@ -41,6 +41,18 @@
                         </Entry.Behaviors>
 
                     </Entry>
+                    <ImageButton
+                        Grid.Row="4"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        BackgroundColor="#C9BF96"
+                        Command="{Binding ClipboardMontCommand}"
+                        CommandParameter="{Binding Text, Source={x:Reference EntryE}}"
+                        CornerRadius="15"
+                        HeightRequest="32"
+                        HorizontalOptions="End"
+                        Source="portapapeles"
+                        WidthRequest="32" />
                 </HorizontalStackLayout>
                 <HorizontalStackLayout Grid.Row="1">
                     <Label
@@ -63,6 +75,18 @@
                         </Entry.Behaviors>
 
                     </Entry>
+                    <ImageButton
+                        Grid.Row="4"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        BackgroundColor="#C9BF96"
+                        Command="{Binding ClipboardMontCommand}"
+                        CommandParameter="{Binding Text, Source={x:Reference EntryR}}"
+                        CornerRadius="15"
+                        HeightRequest="32"
+                        HorizontalOptions="End"
+                        Source="portapapeles"
+                        WidthRequest="32" />
                 </HorizontalStackLayout>
 
 

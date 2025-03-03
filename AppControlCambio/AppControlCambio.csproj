@@ -76,14 +76,12 @@
 	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\Argentinat.png" />
 	  <MauiImage Remove="Resources\Images\Brasilt.png" />
-	  <MauiImage Remove="Resources\Images\change1.png" />
-	  <MauiImage Remove="Resources\Images\changee.png" />
-	  <MauiImage Remove="Resources\Images\changetasas.png" />
 	  <MauiImage Remove="Resources\Images\Chilet.png" />
 	  <MauiImage Remove="Resources\Images\Colombiat.png" />
 	  <MauiImage Remove="Resources\Images\Ecuadort.png" />
 	  <MauiImage Remove="Resources\Images\eeuut.png" />
 	  <MauiImage Remove="Resources\Images\Espanat.png" />
+	  <MauiImage Remove="Resources\Images\fondotasas.png" />
 	  <MauiImage Remove="Resources\Images\Mexicot.png" />
 	  <MauiImage Remove="Resources\Images\Panamat.png" />
 	  <MauiImage Remove="Resources\Images\Perut.png" />
@@ -100,9 +98,6 @@
 	  <None Remove="Resources\Images\brasil.png" />
 	  <None Remove="Resources\Images\Brasilt.png" />
 	  <None Remove="Resources\Images\calculator.svg" />
-	  <None Remove="Resources\Images\change1.png" />
-	  <None Remove="Resources\Images\Changee.png" />
-	  <None Remove="Resources\Images\changetasas.png" />
 	  <None Remove="Resources\Images\chile.png" />
 	  <None Remove="Resources\Images\Chilet.png" />
 	  <None Remove="Resources\Images\colombia.png" />
@@ -122,7 +117,6 @@
 	  <None Remove="Resources\Images\papelera.png" />
 	  <None Remove="Resources\Images\peru.png" />
 	  <None Remove="Resources\Images\Perut.png" />
-	  <None Remove="Resources\Images\plusbutton.svg" />
 	  <None Remove="Resources\Images\portapapeles.png" />
 	  <None Remove="Resources\Images\Share.png" />
 	  <None Remove="Resources\Images\user.svg" />
@@ -133,9 +127,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\change1.png" />
-	  <EmbeddedResource Include="Resources\Images\changee.png" />
 	  <EmbeddedResource Include="Resources\Images\Ecuadort.png" />
+	  <EmbeddedResource Include="Resources\Images\fondotasas.png" />
 	  <EmbeddedResource Include="Resources\Images\Panamat.png" />
 	  <EmbeddedResource Include="Resources\Images\Perut.png" />
 	  <EmbeddedResource Include="Resources\Images\Venezuelat.png" />
@@ -160,7 +153,6 @@
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\Argentinat.png" />
 	  <EmbeddedResource Include="Resources\Images\Brasilt.png" />
-	  <EmbeddedResource Include="Resources\Images\changetasas.png" />
 	  <EmbeddedResource Include="Resources\Images\Chilet.png" />
 	  <EmbeddedResource Include="Resources\Images\Colombiat.png" />
 	  <EmbeddedResource Include="Resources\Images\EEUUt.png" />

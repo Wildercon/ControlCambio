@@ -19,18 +19,20 @@ namespace AppControlCambio.ViewModel
         private readonly IAccountService _accountService;
         private readonly IValidator<AccountDTO> _validator;
         [ObservableProperty]
-        private List<TasasPDTO> listCountry = [];
+        private List<TasasPDTO> listTasas = [];
+        [ObservableProperty]
+        private List<string> listCountry = [];
 
-       
+
 
         [ObservableProperty]
         private AccountDTO account = new(0,string.Empty, string.Empty, string.Empty, string.Empty,string.Empty,string.Empty);
 
-        public AddAccountVM(IAccountService accountService, ITasaService tasaService,IValidator<AccountDTO> validator)
+        public AddAccountVM(IAccountService accountService, ITasaService tasaService, IValidator<AccountDTO> validator)
         {
             _accountService = accountService;
             _validator = validator;
-            MainThread.BeginInvokeOnMainThread(new Action(async () => ListCountry = await  tasaService.GetCountries() )) ;
+            MainThread.BeginInvokeOnMainThread(new Action(async () => { ListTasas = await tasaService.GetCountries(); ListCountry = ListTasas.Select(x => x.Pais).ToList(); }));
             
         }
 

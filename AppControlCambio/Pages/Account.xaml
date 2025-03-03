@@ -1,53 +1,157 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:model="clr-namespace:Shared;assembly=Shared"
-             x:Class="AppControlCambio.Pages.Account"
-             Title="Cuentas">
+<ContentPage
+    x:Class="AppControlCambio.Pages.Account"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:Shared;assembly=Shared"
+    Title="Cuentas">
     <Grid>
-        
+
+
         <ScrollView>
+
             <VerticalStackLayout Margin="5">
+                <ImageButton
+                    Margin="15"
+                    Background="Transparent"
+                    Command="{Binding PageAddAccountCommand}"
+                    CornerRadius="15"
+                    HeightRequest="30"
+                    HorizontalOptions="End"
+                    Source="plusbutton"
+                    VerticalOptions="End"
+                    WidthRequest="30" />
                 <CollectionView ItemsSource="{Binding ListAccount}">
-                    <CollectionView.ItemsLayout >
-                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>
-                    </CollectionView.ItemsLayout >
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="model:AccountDTO">
                             <Border Padding="5" HorizontalOptions="FillAndExpand">
                                 <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="5"/>
+                                    <RoundRectangle CornerRadius="5" />
 
                                 </Border.StrokeShape>
-                                <Grid RowDefinitions="auto,auto,auto,auto,auto,auto " ColumnDefinitions="auto,auto,* " Margin="20" RowSpacing="8" >
+                                <Grid
+                                    Margin="20"
+                                    ColumnDefinitions="auto,auto,* "
+                                    RowDefinitions="auto,auto,auto,auto,auto,auto "
+                                    RowSpacing="8">
 
-                                    <Label Grid.Row="0" Grid.Column="0" Text="Pais:" FontAttributes="Bold" FontSize="15"/>
-                                    <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Country}"  HorizontalOptions="End" FontSize="15"/>
-                                    <Label Grid.Row="1" Grid.Column="0" Text="Titular:" FontAttributes="Bold" FontSize="15"/>
-                                    <Label Grid.Row="1" Grid.Column="1"  Text="{Binding Name}" HorizontalOptions="End" FontSize="15"/>
-                                    <Label Grid.Row="2" Grid.Column="0" Text="Identificación:" FontAttributes="Bold" FontSize="15"/>
-                                    <Label Grid.Row="2" Grid.Column="1"  Text="{Binding IdOwner}" HorizontalOptions="End" FontSize="15"/>
-                                    <Label Grid.Row="3" Grid.Column="0" Text="Banco:" FontAttributes="Bold" FontSize="15"/>
-                                    <Label Grid.Row="3" Grid.Column="1"  Text="{Binding Bank}" HorizontalOptions="End" FontSize="15"/>
-                                    <Label Grid.Row="4" Grid.Column="0" Text="Cuenta:" FontAttributes="Bold" FontSize="15"/>
-                                    <Label Grid.Row="4" Grid.Column="1" FontSize="15" Text="{Binding AccountNumber}" HorizontalOptions="End"/>
-                                    <Label Grid.Row="5" Grid.Column="0" Text="Obervación:" FontAttributes="Bold" FontSize="15"/>
-                                    <Label Grid.Row="5" Grid.Column="1" FontSize="15" Text="{Binding Observation}" HorizontalOptions="End" TextColor="Black"/>
-                                    <ImageButton  Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Source="lapiz" WidthRequest="35" HeightRequest="35" HorizontalOptions="End"
-                                                   BackgroundColor="#1A97D5" Padding="2" CornerRadius="15" 
-                                            Command="{Binding BindingContext.EditAccountCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}} " 
-                                            CommandParameter="{Binding .}"/>
-                                    
-                                    <ImageButton Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Source="papelera" WidthRequest="35" HeightRequest="35" HorizontalOptions="End" 
-                                            BackgroundColor="Red" Padding="2" CornerRadius="15"  
-                                            Command="{Binding BindingContext.DeleteAccountCommand,Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                                            CommandParameter="{Binding Id}"/>
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Pais:" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Country}" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Titular:" />
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Name}" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Identificación:" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding IdOwner}" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Banco:" />
+                                    <Label
+                                        Grid.Row="3"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Bank}" />
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Cuenta:" />
+                                    <Label
+                                        Grid.Row="4"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding AccountNumber}" />
+                                    <Label
+                                        Grid.Row="5"
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        FontSize="15"
+                                        Text="Obervación:" />
+                                    <Label
+                                        Grid.Row="5"
+                                        Grid.Column="1"
+                                        FontSize="15"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Observation}"
+                                        TextColor="Black" />
+                                    <ImageButton
+                                        Grid.Row="0"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        Padding="2"
+                                        BackgroundColor="#1A97D5"
+                                        Command="{Binding BindingContext.EditAccountCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="15"
+                                        HeightRequest="35"
+                                        HorizontalOptions="End"
+                                        Source="lapiz"
+                                        WidthRequest="35" />
 
-                                    <ImageButton Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Source="portapapeles" WidthRequest="32" HeightRequest="32" HorizontalOptions="End"
-                                                 BackgroundColor="#C9BF96" CornerRadius="15"
-                                                  Command="{Binding BindingContext.ClipboardAccountCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
-                                                  CommandParameter="{Binding .}"/>
+                                    <ImageButton
+                                        Grid.Row="2"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        Padding="2"
+                                        BackgroundColor="Red"
+                                        Command="{Binding BindingContext.DeleteAccountCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding Id}"
+                                        CornerRadius="15"
+                                        HeightRequest="35"
+                                        HorizontalOptions="End"
+                                        Source="papelera"
+                                        WidthRequest="35" />
+
+                                    <ImageButton
+                                        Grid.Row="4"
+                                        Grid.RowSpan="2"
+                                        Grid.Column="2"
+                                        BackgroundColor="#C9BF96"
+                                        Command="{Binding BindingContext.ClipboardAccountCommand, Source={x:RelativeSource AncestorType={x:Type ContentPage}}}"
+                                        CommandParameter="{Binding .}"
+                                        CornerRadius="15"
+                                        HeightRequest="32"
+                                        HorizontalOptions="End"
+                                        Source="portapapeles"
+                                        WidthRequest="32" />
                                 </Grid>
 
                             </Border>
@@ -58,13 +162,7 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
-        <Grid>
-            
-                <ImageButton Source="plusbutton" 
-                    CornerRadius="15" WidthRequest="60" HeightRequest="60" Background="Transparent" 
-                    HorizontalOptions="End" VerticalOptions="End" Margin="15" Command="{Binding PageAddAccountCommand}"/>
 
-        </Grid>
     </Grid>
-    
+
 </ContentPage>

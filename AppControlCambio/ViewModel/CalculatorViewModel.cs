@@ -67,6 +67,13 @@ namespace AppControlCambio.ViewModel
                 ResultCalE = decimal.Round(result,2);
             }
         }
+        [RelayCommand]
+        public static async Task ClipboardMont(string mont)
+        {
+           
+            await Clipboard.SetTextAsync(mont);
+            await Shell.Current.DisplayAlert("", "Copiado", "Ok");
+        }
 
     }
 }
